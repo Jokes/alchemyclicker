@@ -43,11 +43,13 @@ Resources :
 
 Clickables :
     *Orb
+    -named Tap mana orb
     -"Your mana orb. <br>Produces 1 mana."
     -gives 1 mana
     -visible
 
     *Faucet
+    -named Use water faucet
     -"Your lab faucet. <br>Produces 1 water."
     -gives 1 water
     -visible
