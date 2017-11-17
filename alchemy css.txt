@@ -1,0 +1,21 @@
+#buildingTitle {
+    padding-bottom: 0.5em;
+}
+.resource {
+    padding: 0.25em 0;
+}
+.sell {
+    display: block;
+    position: absolute;
+    right: 0.3em;
+    top: 0.4em;
+    padding: 0.25em;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.sell:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.upgrade.bought {
+    background-color: rgba(128, 128, 128, 0.4);
+}
+
