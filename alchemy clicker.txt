@@ -2,7 +2,7 @@ Let's make a game!
     -Alchemy Clicker
     -by Kappa
     // -created on November 16 2017
-    -version 0.15
+    -version 0.16
 
 Settings : 
     -prices increase by 115%
@@ -12,6 +12,7 @@ Settings :
     -buildings are hidden by default
     -upgrades are hidden by default
     -show log
+    -custom stylesheet : https://raw.githubusercontent.com/Jokes/alchemyclicker/master/alchemy-css.txt
 
 Resources :
     *Mana
@@ -122,6 +123,7 @@ Buildings :
     -gives 1 Beets
     -costs 1 SimpleAutomata
     -unlocks at 1 SimpleAutomata
+    -price increases by 100%
 
     *AutoHazel
     -named Hazel Harvester
@@ -129,6 +131,7 @@ Buildings :
     -gives 1 hazel
     -costs 1 SimpleAutomata
     -unlocks at 1 SimpleAutomata
+    -price increases by 100%
 
 Upgrades :
     *SaltSupply
