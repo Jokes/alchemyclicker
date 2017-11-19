@@ -1,7 +1,7 @@
 Let's make a game!
   name:Alchemy Clicker
   by:Kappa
-  version:0.22
+  version:0.23
 
 Settings
   building cost increase: 115%
@@ -124,10 +124,10 @@ Buildings
     req:(Mana:max)>500
 
   *CrystalArrayPlusPlus
-    name: Polished Crystal Rack|Polished Crystal Racks
-    desc: A glittering edifice. </>Produces 1000 mana per second.
+    name:Polished Crystal Rack|Polished Crystal Racks
+    desc:A glittering edifice. </>Produces 1000 mana per second.
     on tick:yield 1000 Mana
-    cost: 10000 Mana
+    cost:10000 Mana
     req:(Mana:max)>10000
 
   *Fountain
