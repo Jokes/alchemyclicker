@@ -1,7 +1,7 @@
 Let's make a game!
   name:Alchemy Clicker
   by:Kappa
-  version:0.2.1
+  version:0.21
 
 Settings
   building cost increase: 115%
@@ -114,13 +114,20 @@ Buildings
     desc:A neat row of small quartz crystals, sparkling with power. </>Produces 1 mana per second.
     on tick:yield 1 Mana
     cost:50 Mana
-    req:10 Mana
+    req:(Mana:earned)>10
+
+  *CrystalArrayPlus
+    name:Advanced Crystal Array|Advanced Crystal Arrays
+    desc:A hundred perfectly clear quartz crystals, arranged in a complex geometric pattern. </>Produces 100 mana per second.
+    on tick:yield 100 Mana
+    cost:500 Mana
+    req:(Mana:max)>500
 
   *Fountain
     on tick:yield 1 Water
     desc:The steady trickle makes a pleasant sound. </>Produces 1 water per second.
     cost:10 Mana
-    req:1 Mana
+    req:(Mana:earned)>0
 
   *SaltSubscription
     name:Salt Subscription|Salt Subscriptions
@@ -133,7 +140,7 @@ Buildings
       end
     end
     cost:30 Mana
-    req:500 Salt
+    req:(Salt:earned)>500
 
   *BeeFriend
     name:Bee Friend|Bee Friends
@@ -150,7 +157,7 @@ Buildings
     desc:Set one of your automata to harvesting beets. </>Produces 1 heart beet per second.
     on tick:yield 1 Beets
     cost:1 SimpleAutomata
-    req:1 SimpleAutomata
+    req:(SimpleAutomata:earned)>0
     cost increase:100%
 
   *AutoHazel
@@ -158,7 +165,7 @@ Buildings
     desc:Set one of your automata to harvesting hazel. </>Produces 1 witch hazel per second.
     on tick:yield 1 Hazel
     cost:1 SimpleAutomata
-    req:1 SimpleAutomata
+    req:(SimpleAutomata:earned)>0
     cost increase:100%
 
 
@@ -172,7 +179,7 @@ Upgrades
   *Garden
     desc:A garden attached to your workshop. Here, you can grow plants.
     cost:500 Mana
-    req:100 Mana
+    req:(Mana:max>100)
 
   *Beehive
     desc:A beehive for your garden. The bees will graciously permit you to collect wax and honey.
