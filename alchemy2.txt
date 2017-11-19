@@ -123,6 +123,13 @@ Buildings
     cost:500 Mana
     req:(Mana:max)>500
 
+  *CrystalArrayPlusPlus
+    name: Polished Crystal Rack|Polished Crystal Racks
+    desc: A glittering edifice. </>Produces 1000 mana per second.
+    on tick: yield 1000 Mana
+    cost: 10000 Mana
+    req:(Mana:max)>10000
+
   *Fountain
     on tick:yield 1 Water
     desc:The steady trickle makes a pleasant sound. </>Produces 1 water per second.
@@ -140,7 +147,7 @@ Buildings
       end
     end
     cost:30 Mana
-    req:(Salt:earned)>500
+    req:have SaltSupply
 
   *BeeFriend
     name:Bee Friend|Bee Friends
@@ -150,7 +157,7 @@ Buildings
       yield 1 Beeswax
     end
     cost:20 Mana
-    req:10 Honey
+    req:have Beehive
 
   *AutoBeet
     name:Beet Harvester
@@ -174,7 +181,7 @@ Upgrades
     name:Salt supply
     desc:Salt is one of the most basic ingredients. Now you can afford it.
     cost:100 Mana
-    req:50 Mana
+    req:(Mana:max>50)
 
   *Garden
     desc:A garden attached to your workshop. Here, you can grow plants.
