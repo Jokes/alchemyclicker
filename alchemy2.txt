@@ -1,7 +1,7 @@
 Let's make a game!
   name:Alchemy Clicker
   by:Kappa
-  version:0.21
+  version:0.22
 
 Settings
   building cost increase: 115%
