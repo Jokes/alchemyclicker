@@ -1,16 +1,11 @@
 Let's make a game!
   name:Alchemy Clicker
   by:Kappa
-  version:0.23
+  version:0.24
 
 Settings
   building cost increase: 115%
   building cost refund: 100%
-    -resources are hidden by default
-    -clickables are hidden by default
-    -buildings are hidden by default
-    -upgrades are hidden by default
-    -show log
   stylesheet: https://raw.githubusercontent.com/Jokes/alchemyclicker/master/alchemy2-css.txt
 
 Resources
@@ -29,22 +24,27 @@ Resources
   *Beets
     name:heart beet|heart beets
     req:(Beets:earned)>0
+    tag:gardenRes
 
   *Hazel
     name:witch hazel|witch hazel
     req:(Hazel:earned)>0
+    tag:gardenRes
 
   *Honey
     name:honey|honey
     req:(Honey:earned)>0
+    tag:gardenRes
 
   *Beeswax
     name:beeswax|beeswax
     req:(Beeswax:earned)>0
+    tag:gardenRes
 
   *SimpleAutomata
     name:simple automaton|simple automata
     req:(SimpleAutomata:earned)>0
+    tag:workshopRes
 
 Buttons
   *Orb
@@ -76,24 +76,28 @@ Buttons
     desc:Grab a beet from your garden. </>Produces 1 heart beet.
     on click:yield 1 Beets
     hidden
+    tag:gardenClick
   
   *GardenHazel
     name:Harvest hazel
     desc:Fetch some hazel from your garden. </>Produces 1 witch hazel.
     on click:yield 1 Hazel
     hidden
+    tag:gardenClick
 
   *HiveHoney
     name:Procure honey
     desc:Acquire some honey from the bees. </>Produces 1 honey.
     on click:yield 1 Honey
     hidden
+    tag:gardenClick
 
   *HiveWax
     name:Procure beeswax
     desc:Acquire some wax from the bees. </>Produces 1 beeswax.
     on click:yield 1 Beeswax
     hidden
+    tag:gardenClick
 
   *MakeSimpleAutomaton
     name:Craft simple automaton
@@ -107,6 +111,7 @@ Buttons
       end
     end
     hidden
+    tag:workshopClick
 
 Buildings
   *CrystalArray
@@ -115,22 +120,26 @@ Buildings
     on tick:yield 1 Mana
     cost:50 Mana
     req:(Mana:earned)>10
+    tag:manaBuild
 
   *CrystalArrayPlus
     name:Advanced Crystal Array|Advanced Crystal Arrays
-    desc:A hundred perfectly clear quartz crystals, arranged in a complex geometric pattern. </>Produces 100 mana per second.
-    on tick:yield 100 Mana
-    cost:500 Mana
-    req:(Mana:max)>500
+    desc:A hundred perfectly clear quartz crystals, arranged in a complex geometric pattern. </>Produces 50 mana per second.
+    on tick:yield 50 Mana
+    cost:1000 Mana
+    req:(Mana:max)>1000
+    tag:manaBuild
 
   *CrystalArrayPlusPlus
     name:Polished Crystal Rack|Polished Crystal Racks
-    desc:A glittering edifice. </>Produces 1000 mana per second.
-    on tick:yield 1000 Mana
+    desc:A glittering edifice. </>Produces 500 mana per second.
+    on tick:yield 500 Mana
     cost:10000 Mana
     req:(Mana:max)>10000
+    tag:manaBuild
 
   *Fountain
+    name:Fountain|Fountains
     on tick:yield 1 Water
     desc:The steady trickle makes a pleasant sound. </>Produces 1 water per second.
     cost:10 Mana
@@ -158,22 +167,25 @@ Buildings
     end
     cost:20 Mana
     req:have Beehive
+    tag:gardenBuild
 
   *AutoBeet
-    name:Beet Harvester
+    name:Beet Harvester|Beet Harvesters
     desc:Set one of your automata to harvesting beets. </>Produces 1 heart beet per second.
     on tick:yield 1 Beets
     cost:1 SimpleAutomata
     req:(SimpleAutomata:earned)>0
     cost increase:100%
+    tag:gardenBuild
 
   *AutoHazel
-    name:Hazel Harvester
+    name:Hazel Harvester|Hazel Harvesters
     desc:Set one of your automata to harvesting hazel. </>Produces 1 witch hazel per second.
     on tick:yield 1 Hazel
     cost:1 SimpleAutomata
     req:(SimpleAutomata:earned)>0
     cost increase:100%
+    tag:gardenBuild
 
 
 Upgrades
@@ -204,3 +216,13 @@ Upgrades
     cost:5000 Mana
     req:have Beehive
     on earn:show MakeSimpleAutomaton
+
+Shinies
+  *Bubble
+    name:bubble|bubbles
+    icon:https://i.imgur.com/hkjjZgK.png
+    frequency:300
+    frequency variation:240
+    duration:30
+    movement:onBottom moveTop fade pulse bobHorizontal
+    on click:yield 100 Mana
