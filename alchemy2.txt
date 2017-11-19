@@ -1,0 +1,186 @@
+Let's make a game!
+  name:Alchemy Clicker
+  by:Kappa
+  version:0.2.1
+
+Settings
+  building cost increase: 115%
+  building cost refund: 100%
+    -resources are hidden by default
+    -clickables are hidden by default
+    -buildings are hidden by default
+    -upgrades are hidden by default
+    -show log
+  stylesheet: https://raw.githubusercontent.com/Jokes/alchemyclicker/master/alchemy2-css.txt
+
+Resources
+  *Mana
+    name:mana|mana
+    shown
+
+  *Water
+    name:water|water
+    shown
+
+  *Salt
+    name:salt|salt
+    req:have SaltSupply
+
+  *Beets
+    name:heart beet|heart beets
+    req:have Garden
+
+  *Hazel
+    name:witch hazel|witch hazel
+    req:have Garden
+
+  *Honey
+    name:honey|honey
+    req:have Beehive
+
+  *Beeswax
+    name:beeswax|beeswax
+    req:have Beehive
+
+  *SimpleAutomata
+    name:simple automaton|simple automata
+
+Buttons
+  *Orb
+    name:Tap mana orb
+    desc:Your mana orb. </>Produces 1 mana.
+    on click:yield 1 Mana
+    shown
+
+  *Faucet
+    name:Use water faucet
+    desc:Your lab faucet. </>Produces 1 water.
+    on click:yield 1 Water
+    shown
+
+  *SaltOrder
+    name:Order salt
+    desc:The ancients would be shocked at how cheap this stuff has gotten. </>Purchase 100 salt for 5 mana.
+    on click:
+      // is there a better way to do this???
+      if (Mana >= 5)
+        yield 100 Salt
+        lose 5 Mana
+      end
+    end
+    req:have SaltSupply
+    hidden
+
+  *GardenBeet
+    name:Dig beet
+    desc:Grab a beet from your garden. </>Produces 1 heart beet.
+    on click:yield 1 Beets
+    req:have Garden
+  
+  *GardenHazel
+    name:Harvest hazel
+    desc:Fetch some hazel from your garden. </>Produces 1 witch hazel.
+    on click:yield 1 Hazel
+    req:have Garden
+
+  *HiveHoney
+    name:Procure honey
+    desc:Acquire some honey from the bees. </>Produces 1 honey.
+    on click:yield 1 Honey
+    req:have Beehive
+
+  *HiveWax
+    name:Procure beeswax
+    desc:Acquire some wax from the bees. </>Produces 1 beeswax.
+    on click:yield 1 Beeswax
+    req:have Beehive
+
+  *MakeSimpleAutomaton
+    name:Craft simple automaton
+    desc:Craft a simple automaton out of wax. </>Creates 1 simple automaton from 100 wax using 50 mana.
+    on click:
+      // is there a better way to do this???
+      if (Mana >= 50 and Beeswax > 100)
+        yield 1 SimpleAutomata
+        lose 50 Mana
+        lose 100 Beeswax
+      end
+    end
+    req:have AutoBook
+
+Buildings
+  *CrystalArray
+    name:Crystal Array|Crystal Arrays
+    desc:A neat row of small quartz crystals, sparkling with power. </>Produces 1 mana per second.
+    on tick:yield 1 Mana
+    cost:50 Mana
+    req:10 Mana
+
+  *Fountain
+    on tick:yield 1 Water
+    desc:The steady trickle makes a pleasant sound. </>Produces 1 water per second.
+    cost:10 Mana
+    req:1 Mana
+
+  *SaltSubscription
+    name:Salt Subscription|Salt Subscriptions
+    desc:A subscription to the salt supplier. </>Purchases 20 salt for 1 mana once per second.
+    on tick:
+      // is there a better way to do this???
+      if (Mana > 0)
+        yield 20 Salt
+        lose 1 Mana
+      end
+    end
+    cost:30 Mana
+    req:500 Salt
+
+  *BeeFriend
+    name:Bee Friend|Bee Friends
+    desc:Befriend a bee. Your new pal loves to help out. </>Produces 1 honey and 1 beeswax per second.
+    on tick:
+      yield 1 Honey
+      yield 1 Beeswax
+    end
+    cost:20 Mana
+    req:10 Honey
+
+  *AutoBeet
+    name:Beet Harvester
+    desc:Set one of your automata to harvesting beets. </>Produces 1 heart beet per second.
+    on tick:yield 1 Beets
+    cost:1 SimpleAutomata
+    req:1 SimpleAutomata
+    cost increase:100%
+
+  *AutoHazel
+    name:Hazel Harvester
+    desc:Set one of your automata to harvesting hazel. </>Produces 1 witch hazel per second.
+    on tick:yield 1 Hazel
+    cost:1 SimpleAutomata
+    req:1 SimpleAutomata
+    cost increase:100%
+
+
+Upgrades
+  *SaltSupply
+    name:Salt supply
+    desc:Salt is one of the most basic ingredients. Now you can afford it.
+    cost:100 Mana
+    req:50 Mana
+
+  *Garden
+    desc:A garden attached to your workshop. Here, you can grow plants.
+    cost:500 Mana
+    req:100 Mana
+
+  *Beehive
+    desc:A beehive for your garden. The bees will graciously permit you to collect wax and honey.
+    cost:400 Mana
+    req:have Garden
+
+  *AutoBook
+    name:Book of Automata
+    desc:A textbook on the construction and maintenance of automata. Expensive, but ultimately worthwhile.
+    cost:5000 Mana
+    req:have Beehive
