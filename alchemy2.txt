@@ -24,26 +24,27 @@ Resources
 
   *Salt
     name:salt|salt
-    req:have SaltSupply
+    req:(Salt:earned)>0
 
   *Beets
     name:heart beet|heart beets
-    req:have Garden
+    req:(Beets:earned)>0
 
   *Hazel
     name:witch hazel|witch hazel
-    req:have Garden
+    req:(Hazel:earned)>0
 
   *Honey
     name:honey|honey
-    req:have Beehive
+    req:(Honey:earned)>0
 
   *Beeswax
     name:beeswax|beeswax
-    req:have Beehive
+    req:(Beeswax:earned)>0
 
   *SimpleAutomata
     name:simple automaton|simple automata
+    req:(SimpleAutomata:earned)>0
 
 Buttons
   *Orb
@@ -68,32 +69,31 @@ Buttons
         lose 5 Mana
       end
     end
-    req:have SaltSupply
     hidden
 
   *GardenBeet
     name:Dig beet
     desc:Grab a beet from your garden. </>Produces 1 heart beet.
     on click:yield 1 Beets
-    req:have Garden
+    hidden
   
   *GardenHazel
     name:Harvest hazel
     desc:Fetch some hazel from your garden. </>Produces 1 witch hazel.
     on click:yield 1 Hazel
-    req:have Garden
+    hidden
 
   *HiveHoney
     name:Procure honey
     desc:Acquire some honey from the bees. </>Produces 1 honey.
     on click:yield 1 Honey
-    req:have Beehive
+    hidden
 
   *HiveWax
     name:Procure beeswax
     desc:Acquire some wax from the bees. </>Produces 1 beeswax.
     on click:yield 1 Beeswax
-    req:have Beehive
+    hidden
 
   *MakeSimpleAutomaton
     name:Craft simple automaton
@@ -106,7 +106,7 @@ Buttons
         lose 100 Beeswax
       end
     end
-    req:have AutoBook
+    hidden
 
 Buildings
   *CrystalArray
@@ -182,19 +182,25 @@ Upgrades
     desc:Salt is one of the most basic ingredients. Now you can afford it.
     cost:100 Mana
     req:(Mana:max>50)
+    on earn:show SaltOrder
 
   *Garden
     desc:A garden attached to your workshop. Here, you can grow plants.
     cost:500 Mana
     req:(Mana:max>100)
+    on earn:show GardenBeet
+    on earn:show GardenHazel
 
   *Beehive
     desc:A beehive for your garden. The bees will graciously permit you to collect wax and honey.
     cost:400 Mana
     req:have Garden
+    on earn:show HiveHoney
+    on earn:show HiveWax
 
   *AutoBook
     name:Book of Automata
     desc:A textbook on the construction and maintenance of automata. Expensive, but ultimately worthwhile.
     cost:5000 Mana
     req:have Beehive
+    on earn:show MakeSimpleAutomaton
